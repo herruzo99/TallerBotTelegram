@@ -19,6 +19,12 @@ def foto(update, context):
 def ubicacion(update, context):
     context.bot.send_venue(update.message.chat_id,41.6576994,-4.7101465,"BEST Valladolid", "Escuela de Ingenierías Industriales")
 
+def sticker(update, context):
+    context.bot.send_sticker(update.message.chat_id, "https://www.gstatic.com/webp/gallery/1.webp")
+
+def guitarra(update, context):
+    context.bot.send_sticker(update.message.chat_id, "https://raw.githubusercontent.com/TelegramBots/book/master/src/docs/audio-guitar.mp3")
+
 def help_command(update, context):
     """Send a message when the command /help is issued."""
     update.message.reply_text('Tan solo escribe tu nombre ;)')
@@ -34,7 +40,7 @@ def main():
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
-    updater = Updater("1006343583:AAEMxoZrVaQcPA4oSjkbS7gNBkWaMmxLgdM", use_context=True)
+    updater = Updater("917500427:AAEEVfrX9bzbCiPtwkzSVmNRb6RUFD1IJRs", use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
@@ -44,6 +50,8 @@ def main():
     dp.add_handler(CommandHandler("help", help_command))
     dp.add_handler(CommandHandler("foto", foto))
     dp.add_handler(CommandHandler("ubicacion", ubicacion))
+    dp.add_handler(CommandHandler("sticker", sticker))
+    dp.add_handler(CommandHandler("guitarra", guitarra))
 
     # on noncommand i.e message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
